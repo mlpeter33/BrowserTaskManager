@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Browser Task Manager",
+    "version": "1.0",
+    "description": "Monitor and manage browser tabs and resources.",
+    "permissions": ["tabs", "system.memory", "system.cpu", "webRequest", "management"],
+    "host_permissions": ["<all_urls>"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon512.png",
+        "48": "icon512.png",
+        "128": "icon512.png"
+      }
+    },
+    "icons": {
+      "16": "icon512.png",
+      "48": "icon512.png",
+      "128": "icon512.png"
+    }
+  }
