@@ -1,17 +1,51 @@
-// Log memory and CPU usage periodically
-chrome.runtime.onInstalled.addListener(() => {
-    console.log("Browser Task Manager installed.");
-  });
-  
-  setInterval(() => {
+let memoryInterval;
+
+// Fetch tabs
+const getTabs = async () => {
+  return await chrome.tabs.query({});
+};
+
+// Fetch extensions
+const getExtensions = async () => {
+  return await chrome.management.getAll();
+};
+
+// Start memory monitoring
+const startMemoryMonitoring = () => {
+  if (memoryInterval) return; 
+  memoryInterval = setInterval(() => {
     chrome.system.memory.getInfo((memory) => {
       const usedMemory = memory.capacity - memory.availableCapacity;
       const memoryUsagePercentage = (usedMemory / memory.capacity) * 100;
-      console.log(`Memory Usage: ${memoryUsagePercentage.toFixed(2)}%`);
-    });
-  
-    chrome.system.cpu.getInfo((cpu) => {
-      console.log("CPU Info:", cpu);
+      chrome.runtime.sendMessage({
+        type: 'MEMORY_USAGE',
+        data: memoryUsagePercentage.toFixed(2),
+      });
     });
   }, 1000);
+};
+
+// Stop memory monitoring
+const stopMemoryMonitoring = () => {
+  if (memoryInterval) {
+    clearInterval(memoryInterval);
+    memoryInterval = null;
+  }
+};
+
+// Listen for messages from the popup
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log('Received message:', message);
+  if (message.type === 'GET_TABS') {
+    getTabs().then(tabs => sendResponse({ tabs }));
+  } else if (message.type === 'GET_EXTENSIONS') {
+    getExtensions().then(extensions => sendResponse({ extensions }));
+  } else if (message.type === 'START_MEMORY_MONITORING') {
+    startMemoryMonitoring();
+  } else if (message.type === 'STOP_MEMORY_MONITORING') {
+    stopMemoryMonitoring();
+  }
+  return true; 
+});
+
 
