@@ -47,7 +47,13 @@ extensionsTab.addEventListener("click", () => switchTab(extensionsTab));
 
   chrome.runtime.onMessage.addListener((message) => {
     if (message.type === 'MEMORY_USAGE') {
-      memoryUsageElement.textContent = `Memory Usage: ${message.data}%`;
+      const memoryUsage = message.data;
+      const memoryProgress = document.getElementById("memory-progress");
+      const memoryText = document.getElementById("memory-usage");
+  
+      // Update the progress bar and the text
+      memoryProgress.value = memoryUsage; 
+      memoryText.textContent = `Memory Usage: ${memoryUsage.toFixed(2)}%`; 
     }
   });
 

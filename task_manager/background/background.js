@@ -11,19 +11,15 @@ const getExtensions = async () => {
 };
 
 // Start memory monitoring
-const startMemoryMonitoring = () => {
-  if (memoryInterval) return; 
-  memoryInterval = setInterval(() => {
+function startMemoryMonitoring() {
+  setInterval(() => {
     chrome.system.memory.getInfo((memory) => {
       const usedMemory = memory.capacity - memory.availableCapacity;
       const memoryUsagePercentage = (usedMemory / memory.capacity) * 100;
-      chrome.runtime.sendMessage({
-        type: 'MEMORY_USAGE',
-        data: memoryUsagePercentage.toFixed(2),
-      });
+      chrome.runtime.sendMessage({ type: 'MEMORY_USAGE', data: memoryUsagePercentage });
     });
-  }, 1000);
-};
+  }, 1000);  // Update every second
+}
 
 // Stop memory monitoring
 const stopMemoryMonitoring = () => {
