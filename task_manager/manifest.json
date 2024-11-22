@@ -6,10 +6,10 @@
     "permissions": ["tabs", "system.memory", "system.cpu", "webRequest", "management"],
     "host_permissions": ["<all_urls>"],
     "background": {
-      "service_worker": "background.js"
+      "service_worker": "background/background.js"
     },
     "action": {
-      "default_popup": "popup.html",
+      "default_popup": "popup/popup.html",
       "default_icon": {
         "16": "icon512.png",
         "48": "icon512.png",
