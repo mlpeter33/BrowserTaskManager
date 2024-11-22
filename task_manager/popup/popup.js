@@ -75,4 +75,28 @@ extensionsTab.addEventListener("click", () => switchTab(extensionsTab));
 } catch (error) {
   console.error('Error sending message to background:', error);
 }
+
+
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+  // Check and apply saved theme from localStorage
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    darkModeToggle.checked = true;
+  }
+
+  // Toggle dark mode on checkbox change
+  darkModeToggle.addEventListener("change", () => {
+    if (darkModeToggle.checked) {
+      document.body.classList.add("dark-mode");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("theme", "light");
+    }
+  });
 });

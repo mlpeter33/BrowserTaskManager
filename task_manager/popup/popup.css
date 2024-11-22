@@ -5,12 +5,36 @@ body, ul {
   list-style: none;
 }
 
+/* CSS Variables for Light Mode */
+:root {
+  --bg-color: #f4f4f9;
+  --text-color: #333;
+  --tab-bg: #6200ea;
+  --tab-hover-bg: #3700b3;
+  --tab-active-bg: #3700b3;
+  --list-bg: #fff;
+  --list-border: #ddd;
+  --highlight-color: #6200ea;
+}
+
+/* CSS Variables for Dark Mode */
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --tab-bg: #1f1f1f;
+  --tab-hover-bg: #333333;
+  --tab-active-bg: #333333;
+  --list-bg: #1f1f1f;
+  --list-border: #333333;
+  --highlight-color: #bb86fc;
+}
+
 /* Body Styling */
 body {
   font-family: Arial, sans-serif;
   font-size: 14px;
-  background: #f4f4f9;
-  color: #333;
+  background: var(--bg-color);
+  color: var(--text-color);
   width: 300px;
   height: 400px;
   display: flex;
@@ -20,9 +44,9 @@ body {
 /* Tabs Container */
 .tabs {
   display: flex;
-  background: #6200ea;
+  background: var(--tab-bg);
   color: #fff;
-  border-bottom: 2px solid #6200ea;
+  border-bottom: 2px solid var(--tab-bg);
 }
 
 /* Tab Styling */
@@ -35,11 +59,11 @@ body {
 }
 
 .tab:hover {
-  background: #3700b3;
+  background: var(--tab-hover-bg);
 }
 
 .active-tab {
-  background: #3700b3;
+  background: var(--tab-active-bg);
   font-weight: bold;
 }
 
@@ -59,7 +83,7 @@ body {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  color: #6200ea;
+  color: var(--highlight-color);
 }
 
 /* Lists Styling */
@@ -70,13 +94,26 @@ ul {
 
 ul li {
   padding: 5px 10px;
-  background: #fff;
-  border: 1px solid #ddd;
+  background: var(--list-bg);
+  border: 1px solid var(--list-border);
   border-radius: 4px;
   margin-bottom: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 ul li:hover {
-  background: #f1f1f1;
+  background: var(--tab-hover-bg);
+}
+
+/* Dark Mode Toggle Styling */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  background: var(--bg-color);
+}
+
+#dark-mode-toggle {
+  margin-right: 5px;
 }
