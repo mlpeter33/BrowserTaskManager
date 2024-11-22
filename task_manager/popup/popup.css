@@ -1,19 +1,49 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 10px;
-  }
-  h1 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  #tabs-container, #extensions-container {
-    margin-bottom: 20px;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    margin: 5px 0;
-  }
+/* Styling for the tab navigation */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  background-color: #f5f5f5;
+}
+
+.tab:hover {
+  background-color: #ddd;
+}
+
+.active-tab {
+  background-color: #ddd;
+  border-color: #bbb;
+  border-bottom: 2px solid white;
+}
+
+/* Style the content sections */
+.content-section {
+  display: none;
+  padding: 20px;
+}
+
+.active-section {
+  display: block;
+}
+
+/* Additional styling */
+#memory-usage {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 5px;
+}
