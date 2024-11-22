@@ -5,10 +5,13 @@ chrome.runtime.onInstalled.addListener(() => {
   
   setInterval(() => {
     chrome.system.memory.getInfo((memory) => {
-      console.log(`Memory Usage: ${(memory.availableCapacity / memory.capacity) * 100}%`);
+      const usedMemory = memory.capacity - memory.availableCapacity;
+      const memoryUsagePercentage = (usedMemory / memory.capacity) * 100;
+      console.log(`Memory Usage: ${memoryUsagePercentage.toFixed(2)}%`);
     });
   
     chrome.system.cpu.getInfo((cpu) => {
       console.log("CPU Info:", cpu);
     });
-  }, 5000);
+  }, 1000);
+
