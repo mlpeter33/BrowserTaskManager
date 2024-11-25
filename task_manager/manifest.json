@@ -3,7 +3,7 @@
     "name": "Browser Task Manager",
     "version": "1.0",
     "description": "Monitor and manage browser tabs and resources.",
-    "permissions": ["tabs", "system.memory", "system.cpu", "webRequest", "management"],
+    "permissions": ["tabs", "system.memory", "debugger", "processes", "scripting", "system.cpu", "webRequest", "management"],
     "host_permissions": ["<all_urls>"],
     "background": {
       "service_worker": "background/background.js"

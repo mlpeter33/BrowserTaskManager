@@ -53,10 +53,11 @@ extensionsTab.addEventListener("click", () => switchTab(extensionsTab));
 
   // Request tabs data from background
   chrome.runtime.sendMessage({ type: 'GET_TABS' }, (response) => {
-    const tabs = response.tabs;
+    const tabs = response.tabsMemory;
+
     tabs.forEach((tab) => {
       const li = document.createElement("li");
-      li.textContent = `${tab.title} (${tab.url})`;
+      li.textContent = `${tab.title} (${tab.url}) - Memory: ${tab.memory}`;
       tabsList.appendChild(li);
     });
   });
